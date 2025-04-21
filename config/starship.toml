@@ -1,0 +1,108 @@
+format = """
+[╭](fg:overlay)\
+$directory\
+$git_branch\
+$fill\
+$nodejs\
+$dotnet\
+$python\
+$java\
+$c\
+$cmd_duration\
+$custom\
+$time\
+$username\
+$line_break\
+$character\
+"""
+
+palette = 'rose-pine-moon'
+add_newline = true
+
+[palettes.dracula]
+foreground = '#F8F8F2'
+background = '#282A36'
+primary = '#1E1F29'
+box = '#44475A'
+blue = '#6272A4'
+cyan = '#8BE9FD'
+green = '#50FA7B'
+orange = '#FFB86C'
+pink = '#FF79C6'
+purple = '#BD93F9'
+red = '#FF5555'
+yellow = '#F1FA8C'
+
+[palettes.rose-pine-moon]
+overlay = '#393552'
+highlight_low = '#2a283e'
+highlight_high = '#56526e'
+love = '#eb6f92'
+gold = '#f6c177'
+rose = '#ea9a97'
+pine = '#3e8fb0'
+foam = '#9ccfd8'
+iris = '#c4a7e7'
+
+[directory]
+format = '[─](fg:overlay)[](fg:love)[󰷏 ](fg:highlight_low bg:love)[](fg:love bg:overlay)[ $read_only$truncation_symbol$path](fg:love bg:overlay)[](fg:overlay)'
+home_symbol = " ~/"
+truncation_symbol = ' '
+truncation_length = 2
+read_only = '󱧵 '
+read_only_style = ''
+
+[git_branch]
+format = '[─](fg:overlay)[](fg:gold)[$symbol](fg:highlight_low bg:gold)[](fg:gold bg:overlay)[ $branch](fg:gold bg:overlay)[](fg:overlay)'
+symbol = ' '
+
+[nodejs]
+format = '[─](fg:overlay)[](fg:gold)[$symbol](fg:highlight_low bg:gold)[](fg:gold bg:overlay)[ $version](fg:gold bg:overlay)[](fg:overlay)'
+symbol = '󰎙 Node.js'
+
+[dotnet]
+format = '[─](fg:overlay)[](fg:gold)[$symbol](fg:highlight_low bg:gold)[](fg:gold bg:overlay)[ $tfm](fg:gold bg:overlay)[](fg:overlay)'
+symbol = ' .NET'
+
+[python]
+format = '[─](fg:overlay)[](fg:gold)[$symbol](fg:highlight_low bg:gold)[](fg:gold bg:overlay)[ $version](fg:gold bg:overlay)[](fg:overlay)'
+symbol = ' python'
+
+[java]
+format = '[─](fg:overlay)[](fg:gold)[$symbol](fg:highlight_low bg:gold)[](fg:gold bg:overlay)[ $version](fg:gold bg:overlay)[](fg:overlay)'
+symbol = ' Java'
+
+[c]
+format = '[─](fg:overlay)[](fg:gold)[$symbol](fg:highlight_low bg:gold)[](fg:gold bg:overlay)[ $version](fg:gold bg:overlay)[](fg:overlay)'
+symbol = ' C'
+
+[fill]
+symbol = '─'
+style = 'fg:overlay'
+
+[cmd_duration]
+min_time = 500
+format = '[─](fg:overlay)[](fg:rose)[ ](fg:highlight_low bg:rose)[](fg:rose bg:overlay)[ $duration](fg:rose bg:overlay)[](fg:overlay)'
+
+[custom.tmux]
+format = '[─](fg:overlay)[](fg:pine)[ tmux ](fg:highlight_low bg:pine)[](fg:pine bg:overlay)[ $output](fg:pine bg:overlay)[](fg:overlay)'
+when = 'env | grep -q "^TMUX="'
+command = "tmux display-message -p '#S'"
+
+[time]
+format = '[─](fg:overlay)[](fg:foam)[󰦖 ](fg:highlight_low bg:foam)[](fg:foam bg:overlay)[ $time](fg:foam bg:overlay)[](fg:overlay)'
+time_format = '%H:%M'
+disabled = false
+
+[battery]
+disabled = false
+format = '[─](fg:overlay)[](fg:love)[$symbol](fg:highlight_low bg:love)[](fg:love bg:overlay)[ $percentage](fg:love bg:overlay)[](fg:overlay)'
+
+[username]
+format = '[─](fg:overlay)[](fg:iris)[ ](fg:highlight_low bg:iris)[](fg:iris bg:overlay)[ $user](fg:iris bg:overlay)[](fg:overlay) '
+show_always = false
+
+[character]
+format = '[╰─$symbol ](fg:overlay)'
+success_symbol = '[󰄾](fg:bold white)'
+error_symbol = '[×](fg:bold red)'

@@ -1,0 +1,28 @@
+general.import = ["~/.config/alacritty/rose-pine-moon.toml"]
+
+[font]
+normal.family = "JetBrainsMono Nerd Font"
+bold.family = "JetBrainsMono Nerd Font"
+italic.family = "JetBrainsMono Nerd Font"
+bold_italic.family = "JetBrainsMono Nerd Font"
+size = 13
+offset = { x=0, y=0}
+glyph_offset = { x=0, y=0}
+builtin_box_drawing = true
+
+[colors]
+cursor = {text = "#6e6a86", cursor = "#ebbcba"}
+
+[mouse]
+hide_when_typing = true
+
+[window]
+padding = { x=8, y=6 }
+dynamic_title = true
+startup_mode = "Maximized"
+
+[selection]
+save_to_clipboard = true
+
+[env]
+TERM = "xterm-256color"
