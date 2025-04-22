@@ -37,8 +37,6 @@ return {
             win_options = {
                 winbar = "%!v:lua.get_oil_winbar()"
             },
-            preview_win = {
-            }
         }
 
         vim.keymap.set("n", "<leader>E", require("oil").toggle_float, { desc = "Toggle Floating File Explorer" })
