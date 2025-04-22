@@ -176,7 +176,7 @@ alias rmq='docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbi
 alias boundvpn='openvpn3 session-start --config bnd-dev'
 
 # Dotnet
-alias dnb='dotnet build --os linux -p:WarningLevel=0'
+alias dnbuild='dotnet build --os linux -p:WarningLevel=0'
 alias dnclean='dotnet clean'
 alias dnrun='dotnet run --os linux -p:WarningLevel=0'
 alias dnrestore='dotnet restore'
