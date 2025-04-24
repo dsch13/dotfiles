@@ -186,7 +186,7 @@ alias pullmaster='pull_all_master.sh'
 alias restoremaster='restore_states.sh'
 
 # Dotnet
-alias dnb='dotnet build --os linux -p:WarningLevel=0'
+alias dnbuild='dotnet build --os linux -p:WarningLevel=0'
 alias dnclean='dotnet clean'
 alias dnrun='dotnet run --os linux -p:WarningLevel=0'
 alias dnrestore='dotnet restore'

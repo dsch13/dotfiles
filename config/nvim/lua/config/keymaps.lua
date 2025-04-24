@@ -31,3 +31,15 @@ vim.keymap.set("n", "<space>x", "<cmd>source %<CR>")
 
 -- clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+local function copy_relative_path()
+    local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
+    if path == '' then
+        vim.notify("No file path to copy", vim.log.levels.WARN)
+        return
+    end
+    vim.fn.setreg("+", path)
+    vim.notify("Copied: " .. path)
+end
+
+vim.keymap.set('n', '<leader>yp', copy_relative_path, { desc = 'Copy relative path to clipboard' })
