@@ -2,9 +2,9 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    commit = "7e0ad4d4e6dc59fc45457f9643d15152f8ad7e80",
     opts = {
         bigfile = { enabled = true },
+        dashboard = require("config.plugins.snacks.dashboard").dashboard,
         indent = { enabled = true },
         input = { enabled = true },
         notifier = {
@@ -19,7 +19,6 @@ return {
         { "<leader>db", function() require("snacks").bufdelete() end,             desc = "[D]elete [B]uffer" }
     },
     init = function()
-        -- vim.notify = require("snacks").notify.notify
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
             callback = function()

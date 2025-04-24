@@ -86,6 +86,14 @@ export NVM_DIR="$HOME/.config/nvm"
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:$HOME/.local/share/flatpak/exports/bin"
 . "$HOME/.cargo/env"
 
+
+# User local bin
+# Create this directory if it doesn't exist
+if [ ! -d "$HOME/bin" ]; then
+  mkdir -p "$HOME/bin"
+fi
+export PATH="$HOME/bin:$PATH"
+
 # Starship and Zoxide
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
@@ -174,12 +182,19 @@ alias topmem='/bin/ps -eo pmem,pid,user,args | sort -k 1 -r | head -10'
 alias tmuxs='tmux new-session -s ${PWD##*/}'
 alias rmq='docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management'
 alias boundvpn='openvpn3 session-start --config bnd-dev'
+alias pullmaster='pull_all_master.sh'
+alias restoremaster='restore_states.sh'
 
 # Dotnet
 alias dnb='dotnet build --os linux -p:WarningLevel=0'
 alias dnclean='dotnet clean'
 alias dnrun='dotnet run --os linux -p:WarningLevel=0'
 alias dnrestore='dotnet restore'
+
+
+# Keepass
+alias kp='keepassxc-cli'
+alias kpopen='kp open ~/Dropbox/KeePass/Passwords-DrewS-Desktop.kdbx -k ~/.keypass/KeePass.keyx'
 
 # ------------------------------------------------------
 # Functions
