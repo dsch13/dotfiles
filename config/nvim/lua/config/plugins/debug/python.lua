@@ -3,40 +3,39 @@ local M = {}
 M.setup = function(dap)
     dap.adapters.python = {
         type = "executable",
-        command = function()
-            -- Ask the user whether to run with Poetry or system Python
-            local choice = vim.fn.input("Use Poetry? (y/n): ")
-            if choice == "y" then
-                return "poetry"
-            else
-                return vim.fn.exepath("python3") -- Use system Python
-            end
-        end,
-        args = function()
-            local choice = vim.fn.input("Use Poetry? (y/n): ")
-            if choice == "y" then
-                return { "run", "python", "-m", "debugpy.adapter" }
-            else
-                return { "-m", "debugpy.adapter" }
-            end
-        end,
+        command = vim.fn.exepath("python"),
+        args = { "-m", "debugpy.adapter" },
     }
 
     dap.configurations.python = {
         {
             type = "python",
             request = "launch",
-            name = "Launch File",
-            program = "${file}", -- Runs the current file
+            name = "Launch file",
+            program = "${file}",
             pythonPath = function()
-                local choice = vim.fn.input("Use Poetry? (y/n): ")
-                if choice == "y" then
-                    return "poetry run python"
+                local venv = os.getenv("VIRTUAL_ENV")
+                if venv then
+                    return venv .. "/bin/python"
                 else
-                    return vim.fn.exepath("python3") -- System Python
+                    return vim.fn.exepath("python")
                 end
             end,
         },
+        {
+            type = "python",
+            request = "attach",
+            name = "Attach to process",
+            processId = require('dap.utils').pick_process,
+            pythonPath = function()
+                local venv = os.getenv("VIRTUAL_ENV")
+                if venv then
+                    return venv .. "/bin/python"
+                else
+                    return vim.fn.exepath("python")
+                end
+            end,
+        }
     }
 end
 

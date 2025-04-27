@@ -19,6 +19,29 @@ return {
             indent = { enable = true },
         })
 
-        require("treesitter-context").setup()
+        require("treesitter-context").setup {
+            max_lines = 5,
+            on_attach = function(bufnr)
+                local context = require("treesitter-context")
+
+                -- Override the default context display function
+                context._update_context = function()
+                    local nodes = context.get_parent_matches()
+                    local filtered = {}
+
+                    for _, node in ipairs(nodes) do
+                        local text = vim.treesitter.get_node_text(node, bufnr)
+
+                        -- If the node's line starts with [, skip it
+                        if not text:match("^%s*%[") then
+                            table.insert(filtered, node)
+                        end
+                    end
+
+                    context.display_context(filtered)
+                end
+                return true
+            end
+        }
     end
 }

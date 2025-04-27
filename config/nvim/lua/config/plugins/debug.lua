@@ -1,51 +1,63 @@
 return {
     "williamboman/mason.nvim",
     dependencies = {
+        'williamboman/mason.nvim',
         "mfussenegger/nvim-dap",
         "jay-babu/mason-nvim-dap.nvim",
         "nvim-neotest/nvim-nio",
         "rcarriga/nvim-dap-ui",
+        "theHamsta/nvim-dap-virtual-text",
+        "jbyuki/one-small-step-for-vimkind",
     },
     init = function()
-        require("mason").setup()
         require("mason-nvim-dap").setup()
+        require("config.plugins.debug.visuals").setup()
 
         local dap = require('dap')
 
-        dap.adapters.coreclr = {
-            type = 'executable',
-            command = vim.fn.stdpath("data") .. "/mason/bin/netcoredbg",
-            args = { '--interpreter=vscode' },
-        }
-
-        dap.configurations.cs = {
-            {
-                type = "coreclr",
-                name = "Launch .NET Core",
-                request = "launch",
-                program = function()
-                    return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
-                end,
-            },
-            {
-                type = "coreclr",
-                name = "Attach to Process",
-                request = "attach",
-                processId = function()
-                    local pid_picker = require("config.plugins.pickers.pid").get("dotnet")
-                    return coroutine.wrap(function() -- Coroutine wraps picker for async return
-                        local pid = coroutine.yield(pid_picker)
-                        return pid
-                    end)()
-                end
-            }
-        }
+        require("config.plugins.debug.cs").setup(dap)
+        require("config.plugins.debug.python").setup(dap)
+        require("config.plugins.debug.lua").setup(dap)
 
         local dapui = require("dapui")
-        require("dapui").setup()
+
+        ---@diagnostic disable-next-line: missing-fields
+        dapui.setup({
+            layouts = {
+                {
+                    elements = {
+                        { id = "watches",     size = 0.30 },
+                        { id = "breakpoints", size = 0.30 },
+                        { id = "scopes",      size = 0.40 },
+                    },
+                    size = 40,
+                    position = "left",
+                },
+                {
+                    elements = { { id = "repl", size = 1.0 } },
+                    size = 10,
+                    position = "bottom"
+                },
+                {
+                    elements = { { id = "threads", size = 1.0 } },
+                    size = 10,
+                    position = "bottom"
+                },
+                {
+                    elements = { { id = "console", size = 1.0 } },
+                    size = 10,
+                    position = "bottom"
+                }
+            },
+            ---@diagnostic disable-next-line: missing-fields
+            controls = {
+                enabled = true,
+                element = "scopes"
+            },
+        })
 
         dap.listeners.after.event_initialized["dapui_config"] = function()
-            dapui.open()
+            dapui.open({ layout = 1 })
         end
         dap.listeners.before.event_terminated["dapui_config"] = function()
             dapui.close()
@@ -53,14 +65,15 @@ return {
         dap.listeners.before.event_exited["dapui_config"] = function()
             dapui.close()
         end
+        dap.listeners.after.event_stopped["auto_jump_to_exception"] = function(_, body)
+            if body.reason == "exception" then
+                vim.schedule(function()
+                    dap.goto_(1)
+                end)
+            end
+        end
 
-        vim.keymap.set('n', '<F5>', function() require 'dap'.continue() end, { desc = "Continue" })
-        vim.keymap.set('n', '<F10>', function() require 'dap'.step_over() end, { desc = "Step Over" })
-        vim.keymap.set('n', '<F11>', function() require 'dap'.step_into() end, { desc = "Step Into" })
-        vim.keymap.set('n', '<F12>', function() require 'dap'.step_out() end, { desc = "Step Out" })
-        vim.keymap.set('n', '<Leader>b', function() require 'dap'.toggle_breakpoint() end, { desc = "[B]reakpoint" })
-        vim.keymap.set('n', '<Leader>B',
-            function() require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
-            { desc = "[B]reakpoint (Condition)" })
+        require("config.plugins.debug.keys").setup(dap, dapui)
+        require("nvim-dap-virtual-text").setup({})
     end
 }

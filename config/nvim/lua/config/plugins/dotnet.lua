@@ -16,25 +16,37 @@ return {
         },
         config = function()
             require('roslyn').setup {
-                args = {
-                    '--stdio',
-                    '--logLevel=Information',
-                    '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
-                    '--razorSourceGenerator='
-                    .. vim.fs.joinpath(vim.fn.stdpath 'data' --[[@as string]], 'mason', 'packages', 'roslyn', 'libexec', 'Microsoft.CodeAnalysis.Razor.Compiler.dll'),
-                    '--razorDesignTimePath=' .. vim.fs.joinpath(
-                        vim.fn.stdpath 'data' --[[@as string]],
-                        'mason',
-                        'packages',
-                        'rzls',
-                        'libexec',
-                        'Targets',
-                        'Microsoft.NET.Sdk.Razor.DesignTime.targets'
-                    ),
-                },
                 filewatching = 'off',
                 ---@diagnostic disable-next-line: missing-fields
                 config = {
+                    cmd = (function()
+                        local mason_path = vim.fn.stdpath("data") .. "/mason/packages/roslyn"
+                        return {
+                            mason_path .. "/roslyn", -- or whatever the roslyn executable filename is
+                            '--stdio',
+                            '--logLevel=Information',
+                            '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
+                            '--razorSourceGenerator='
+                            .. vim.fs.joinpath(
+                                vim.fn.stdpath 'data',
+                                'mason',
+                                'packages',
+                                'roslyn',
+                                'libexec',
+                                'Microsoft.CodeAnalysis.Razor.Compiler.dll'
+                            ),
+                            '--razorDesignTimePath='
+                            .. vim.fs.joinpath(
+                                vim.fn.stdpath 'data',
+                                'mason',
+                                'packages',
+                                'rzls',
+                                'libexec',
+                                'Targets',
+                                'Microsoft.NET.Sdk.Razor.DesignTime.targets'
+                            ),
+                        }
+                    end)(),
                     -- Turn off for now. Seems to be way too slow in large projects
                     -- handlers = require 'rzls.roslyn_handlers',
                     settings = {
