@@ -1,5 +1,6 @@
 return {
     "folke/todo-comments.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
         -- TODO: test
@@ -9,8 +10,5 @@ return {
         -- WARNING: test
         -- PERF: test
 
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
     }
 }

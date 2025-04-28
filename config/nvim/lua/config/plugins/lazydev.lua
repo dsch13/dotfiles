@@ -1,15 +1,16 @@
 return {
     {
-        'folke/lazydev.nvim',
-        ft = 'lua',
+        "folke/lazydev.nvim",
+        ft = "lua",
         opts = {
             library = {
-                { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
             },
         },
     },
     {
-        'ThePrimeagen/vim-be-good',
+        "ThePrimeagen/vim-be-good",
+        cmd = { "VimBeGood" },
         init = function()
             _G.vim_be_good_delete_me_offset = 35
         end

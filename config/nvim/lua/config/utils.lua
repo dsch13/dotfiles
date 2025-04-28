@@ -6,7 +6,7 @@ M.isModuleAvailable = function(name)
     else
         for _, searcher in ipairs(package.loaders) do
             local loader = searcher(name)
-            if type(loader) == 'function' then
+            if type(loader) == "function" then
                 package.preload[name] = loader
                 return true
             end

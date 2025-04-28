@@ -1,9 +1,9 @@
 return {
-    "williamboman/mason.nvim",
+    "jay-babu/mason-nvim-dap.nvim",
+    cmd = { "DapContinue", "DapToggleBreakpoint", "DapTerminate", "DapStepOver", "DapStepInto", "DapStepOut" },
     dependencies = {
-        'williamboman/mason.nvim',
+        "williamboman/mason.nvim",
         "mfussenegger/nvim-dap",
-        "jay-babu/mason-nvim-dap.nvim",
         "nvim-neotest/nvim-nio",
         "rcarriga/nvim-dap-ui",
         "theHamsta/nvim-dap-virtual-text",
@@ -13,7 +13,7 @@ return {
         require("mason-nvim-dap").setup()
         require("config.plugins.debug.visuals").setup()
 
-        local dap = require('dap')
+        local dap = require("dap")
 
         require("config.plugins.debug.cs").setup(dap)
         require("config.plugins.debug.python").setup(dap)

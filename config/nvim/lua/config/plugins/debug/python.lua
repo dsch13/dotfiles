@@ -26,7 +26,7 @@ M.setup = function(dap)
             type = "python",
             request = "attach",
             name = "Attach to process",
-            processId = require('dap.utils').pick_process,
+            processId = require("dap.utils").pick_process,
             pythonPath = function()
                 local venv = os.getenv("VIRTUAL_ENV")
                 if venv then

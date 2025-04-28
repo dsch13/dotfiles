@@ -1,12 +1,13 @@
 return {
-    'saghen/blink.cmp',
-    version = '*',
+    "saghen/blink.cmp",
+    version = "*",
+    event = "InsertEnter",
     dependencies = {
-        'Kaiser-Yang/blink-cmp-avante',
-        'rafamadriz/friendly-snippets',
+        "Kaiser-Yang/blink-cmp-avante",
+        "rafamadriz/friendly-snippets",
         {
-            'L3MON4D3/LuaSnip',
-            version = 'v2.*',
+            "L3MON4D3/LuaSnip",
+            version = "v2.*",
             config = function()
                 require("luasnip.loaders.from_vscode").lazy_load()
                 local luasnip = require("luasnip")
@@ -28,26 +29,26 @@ return {
             end
         },
     },
-    ---@module 'blink.cmp'
+    ---@module "blink.cmp"
     ---@type blink.cmp.Config
     opts = {
-        keymap = { preset = 'default' },
-        snippets = { preset = 'luasnip' },
+        keymap = { preset = "default" },
+        snippets = { preset = "luasnip" },
         appearance = {
-            nerd_font_variant = 'mono'
+            nerd_font_variant = "mono"
         },
         sources = {
-            default = { 'avante', 'lsp', 'path', 'snippets', 'buffer' },
+            default = { "avante", "lsp", "path", "snippets", "buffer" },
             providers = {
                 avante = {
-                    module = 'blink-cmp-avante',
-                    name = 'Avante'
+                    module = "blink-cmp-avante",
+                    name = "Avante"
                 }
             }
         },
         fuzzy = { implementation = "prefer_rust" },
         completion = {
-            menu = { border = 'rounded' },
+            menu = { border = "rounded" },
             ghost_text = { enabled = false },
         },
     },

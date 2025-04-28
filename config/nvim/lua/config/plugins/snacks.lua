@@ -11,7 +11,6 @@ return {
             enabled = true,
         },
         quickfile = { enabled = true },
-        scroll = { enabled = true },
         words = { enabled = true },
     },
     keys = {
@@ -35,7 +34,7 @@ return {
                     for i = 1, #_ do
                         table.insert(print_safe_args, tostring(_[i]))
                     end
-                    Snacks.notifier.notify(table.concat(print_safe_args, ' '), "info")
+                    Snacks.notifier.notify(table.concat(print_safe_args, " "), "info")
                 end
             end,
         })

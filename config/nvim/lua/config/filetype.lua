@@ -1,6 +1,6 @@
 vim.filetype.add {
     extension = {
-        razor = 'razor',
-        cshtml = 'razor',
+        razor = "razor",
+        cshtml = "razor",
     },
 }

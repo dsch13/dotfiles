@@ -20,11 +20,11 @@ vim.opt.undofile = true
 vim.opt.termguicolors = true
 
 -- enable mouse
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- use system clipboard
 vim.schedule(function()
-    vim.opt.clipboard = 'unnamedplus'
+    vim.opt.clipboard = "unnamedplus"
 end)
 
 -- wrap text and end of window
@@ -38,10 +38,10 @@ vim.opt.timeoutlen = 300
 
 -- show whitespace characters
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- live preview substitutions
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- show which line your cursor is on
 vim.opt.cursorline = true
@@ -61,9 +61,9 @@ vim.opt.colorcolumn = "160"
 vim.opt.laststatus = 3
 
 -- highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
-    group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
     callback = function()
         vim.hl.on_yank()
     end,

@@ -1,10 +1,10 @@
 local M = {}
 
-local pickers = require('telescope.pickers')
-local finders = require('telescope.finders')
-local conf = require('telescope.config').values
-local actions = require('telescope.actions')
-local action_state = require('telescope.actions.state')
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local conf = require("telescope.config").values
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
 
 local selected_dll
 
@@ -40,13 +40,13 @@ local function pick_dll()
     end, dlls)
 
     if #dlls == 0 then
-        selected_dll = vim.fn.input('Path to dll: ', cwd .. '/', 'file')
+        selected_dll = vim.fn.input("Path to dll: ", cwd .. "/", "file")
         return selected_dll
     elseif #dlls == 1 then
         selected_dll = dlls[1]
         return selected_dll
     else
-        return telescope_pick(dlls, 'Select DLL to Debug', function(entry)
+        return telescope_pick(dlls, "Select DLL to Debug", function(entry)
             return {
                 value = entry,
                 display = entry:match("([^/]+)%.dll$") or entry,
@@ -89,7 +89,7 @@ local function pick_process()
     elseif #matching == 1 then
         return matching[1].pid
     else
-        local picked = telescope_pick(matching, 'Attach to Process', function(entry)
+        local picked = telescope_pick(matching, "Attach to Process", function(entry)
             return {
                 value = entry.pid,
                 display = string.format("[%d] %s", entry.pid, entry.args),
@@ -102,9 +102,9 @@ end
 
 M.setup = function(dap)
     dap.adapters.coreclr = {
-        type = 'executable',
+        type = "executable",
         command = vim.fn.stdpath("data") .. "/mason/bin/netcoredbg",
-        args = { '--interpreter=vscode' },
+        args = { "--interpreter=vscode" },
     }
 
     dap.configurations.cs = {

@@ -1,15 +1,15 @@
 -- yank and paste keymaps
-vim.keymap.set("n", 'Y', 'yy', { desc = 'Yank entire line' })
+vim.keymap.set("n", "Y", "yy", { desc = "Yank entire line" })
 --
 -- diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<leader>f', vim.diagnostic.open_float, { desc = 'Open [F]loat text' })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>f", vim.diagnostic.open_float, { desc = "Open [F]loat text" })
 
 -- exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- open directory of current file in file explorer
-vim.keymap.set('n', '<leader>e', function() vim.cmd.edit({ vim.fn.expand('%:p:h') }) end, { desc = '[E]dit Directory' })
+vim.keymap.set("n", "<leader>e", function() vim.cmd.edit({ vim.fn.expand("%:p:h") }) end, { desc = "[E]dit Directory" })
 
 -- Move highlighted lines and apply indenting
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -30,11 +30,11 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<space>x", "<cmd>source %<CR>")
 
 -- clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 local function copy_relative_path()
     local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
-    if path == '' then
+    if path == "" then
         vim.notify("No file path to copy", vim.log.levels.WARN)
         return
     end
@@ -42,4 +42,4 @@ local function copy_relative_path()
     vim.notify("Copied: " .. path)
 end
 
-vim.keymap.set('n', '<leader>yp', copy_relative_path, { desc = 'Copy relative path to clipboard' })
+vim.keymap.set("n", "<leader>yp", copy_relative_path, { desc = "Copy relative path to clipboard" })

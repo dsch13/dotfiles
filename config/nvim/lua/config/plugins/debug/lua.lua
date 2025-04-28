@@ -11,9 +11,9 @@ M.setup = function(dap)
 
     dap.configurations.lua = {
         {
-            type = 'nlua',
-            request = 'attach',
-            name = 'Attach to running Neovim instance',
+            type = "nlua",
+            request = "attach",
+            name = "Attach to running Neovim instance",
         },
     }
 end

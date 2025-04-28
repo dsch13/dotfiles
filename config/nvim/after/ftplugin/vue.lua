@@ -1,1 +1,1 @@
-vim.opt.foldmethod = 'expr'
+vim.opt.foldmethod = "expr"

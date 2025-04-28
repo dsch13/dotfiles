@@ -5,8 +5,8 @@ function M.Save(event, client)
     if not client then return end
 
     -- Format on save
-    if client:supports_method('textDocument/formatting') and vim.bo.filetype ~= 'cshtml' then
-        vim.api.nvim_create_autocmd('BufWritePre', {
+    if client:supports_method("textDocument/formatting") and vim.bo.filetype ~= "cshtml" then
+        vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = event.buf,
             callback = function()
                 vim.lsp.buf.format({ bufnr = event.buf, id = client.id })

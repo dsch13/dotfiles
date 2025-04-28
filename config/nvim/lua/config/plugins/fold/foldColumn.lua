@@ -5,7 +5,7 @@ M.setup = function()
     local fill_chars = vim.opt.fillchars:get()
 
     local function get_fold(line_num)
-        if vim.fn.foldlevel(line_num) <= vim.fn.foldlevel(line_num - 1) then return ' ' end
+        if vim.fn.foldlevel(line_num) <= vim.fn.foldlevel(line_num - 1) then return " " end
         return vim.fn.foldclosed(line_num) == -1 and fill_chars.foldopen or fill_chars.foldclose
     end
 

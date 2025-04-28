@@ -16,7 +16,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { 'tpope/vim-sleuth' },
     spec = {
         { import = "config.plugins" },
     },

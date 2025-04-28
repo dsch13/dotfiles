@@ -1,6 +1,6 @@
 return {
-    'stevearc/oil.nvim',
-    ---@module 'oil'
+    "stevearc/oil.nvim",
+    ---@module "oil"
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     config = function()

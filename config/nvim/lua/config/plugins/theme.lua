@@ -4,8 +4,10 @@
 return {
     "rose-pine/neovim",
     name = "rose-pine",
+    lazy = false,
+    priority = 2000,
     config = function()
-        vim.cmd("colorscheme rose-pine-moon")
+        vim.cmd.colorscheme("rose-pine-moon")
 
         vim.cmd([[
           hi Normal      guibg=#232136

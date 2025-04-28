@@ -1,5 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context"
     },
@@ -14,7 +16,6 @@ return {
             highlight = {
                 enable = true,
                 disable = { "vue" },
-                ["attr.value"] = "TSKeyword",
             },
             indent = { enable = true },
         })
@@ -32,7 +33,7 @@ return {
                     for _, node in ipairs(nodes) do
                         local text = vim.treesitter.get_node_text(node, bufnr)
 
-                        -- If the node's line starts with [, skip it
+                        -- If the node"s line starts with [, skip it
                         if not text:match("^%s*%[") then
                             table.insert(filtered, node)
                         end

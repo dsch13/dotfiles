@@ -2,7 +2,7 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
-    ---@module 'copilot'
+    ---@module "copilot"
     ---@type copilot_config
     opts = {
         suggestion = {
@@ -30,7 +30,7 @@ return {
             vim.notify("Copilot Completion: " .. (vim.b.copilot_suggestion_auto_trigger and "Enabled" or "Disabled"))
         end, { desc = "[C]opilot [T]oggle" })
 
-        vim.keymap.set("i", "<C-n>", require("copilot.suggestion").prev,
+        vim.keymap.set("i", "<C-n>", require("copilot.suggestion").next,
             { desc = "Previous Suggestion" })
         vim.keymap.set("i", "<C-p>", require("copilot.suggestion").prev,
             { desc = "Next Suggestion" })

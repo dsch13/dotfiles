@@ -1,14 +1,14 @@
 return {
     "tpope/vim-dadbod",
     dependencies = {
-        { 'kristijanhusak/vim-dadbod-ui',         lazy = true },
-        { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+        { "kristijanhusak/vim-dadbod-ui",         lazy = true },
+        { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
     },
     cmd = {
-        'DBUI',
-        'DBUIToggle',
-        'DBUIAddConnection',
-        'DBUIFindBuffer',
+        "DBUI",
+        "DBUIToggle",
+        "DBUIAddConnection",
+        "DBUIFindBuffer",
     },
     init = function()
         if (require("config.utils").isModuleAvailable("config.plugins.sql.connections")) then

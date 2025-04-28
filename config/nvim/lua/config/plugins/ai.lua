@@ -7,14 +7,14 @@ return {}
 --     opts = {
 --         provider = "ollama",
 --         auto_suggestions_provider = "ollama",
---         cursor_applying_provider = 'ollama',
+--         cursor_applying_provider = "ollama",
 --         behaviour = {
 --             auto_suggestions = true,
 --             enable_cursor_planning_model = true,
 --             enable_token_counting = false,
 --         },
 --         ollama = {
---             model = 'qwen2.5-coder:3b',
+--             model = "qwen2.5-coder:3b",
 --         },
 --         file_selector = {
 --             provider = "telescope",
@@ -31,7 +31,7 @@ return {}
 --         "echasnovski/mini.icons",
 --         {
 --             -- Make sure to set this up properly if you have lazy=true
---             'MeanderingProgrammer/render-markdown.nvim',
+--             "MeanderingProgrammer/render-markdown.nvim",
 --             opts = {
 --                 file_types = { "markdown", "Avante" },
 --             },
@@ -159,6 +159,6 @@ return {}
 --         vim.keymap.set("n", "<leader>ac", "<cmd>CodeCompanionChat<CR>", { desc = "[A]i [C]hat" })
 --         vim.keymap.set("n", "<leader>at", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "[A]i Chat [T]oggle" })
 --         vim.keymap.set("n", "<leader>aa", "<cmd>CodeCompanionActions<CR>", { desc = "[A]i [A]ctions" })
---         vim.keymap.set("v", "<leader>ac", function() vim.cmd('CodeCompanion') end, { desc = "[A]i [C]hat" })
+--         vim.keymap.set("v", "<leader>ac", function() vim.cmd("CodeCompanion") end, { desc = "[A]i [C]hat" })
 --     end
 -- }
