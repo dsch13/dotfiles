@@ -17,7 +17,7 @@ M.dashboard = {
     sections = {
         {
             section = "terminal",
-            cmd = "/usr/bin/chafa ~/.config/bound.png --format symbols --symbols vhalf --size 35x35; sleep .1",
+            cmd = "chafa ~/.config/bound.png --format symbols --symbols vhalf --size 35x35; sleep .1",
             height = 25,
             padding = 1,
         },

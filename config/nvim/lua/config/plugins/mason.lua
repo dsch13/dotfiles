@@ -14,9 +14,9 @@ return {
                     icons = {
                         package_installed = "✓",
                         package_pending = "➜",
-                        package_uninstalled = "✗"
-                    }
-                }
+                        package_uninstalled = "✗",
+                    },
+                },
             })
         end,
     },
@@ -42,7 +42,11 @@ return {
                 "mypy",
 
                 -- formatters
+                "csharpier",
+                "ruff",
                 "stylua",
+                "prettier",
+                "shfmt",
             })
             require("mason-tool-installer").setup({
                 ensure_installed = ensure_installed,
@@ -50,5 +54,5 @@ return {
                 run_on_start = true,
             })
         end,
-    }
+    },
 }

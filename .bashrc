@@ -86,13 +86,15 @@ export NVM_DIR="$HOME/.config/nvm"
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:$HOME/.local/share/flatpak/exports/bin"
 . "$HOME/.cargo/env"
 
-
 # User local bin
 # Create this directory if it doesn't exist
 if [ ! -d "$HOME/bin" ]; then
-  mkdir -p "$HOME/bin"
+    mkdir -p "$HOME/bin"
 fi
 export PATH="$HOME/bin:$PATH"
+
+# Neovim- Mason
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 # Starship and Zoxide
 eval "$(starship init bash)"
@@ -167,10 +169,10 @@ alias gp='git push'
 alias gpl='git pull'
 
 # Grep fallback
-if command -v rg &> /dev/null; then
-  alias grep='rg'
+if command -v rg &>/dev/null; then
+    alias grep='rg'
 else
-  alias grep='/usr/bin/grep $GREP_OPTIONS'
+    alias grep='/usr/bin/grep $GREP_OPTIONS'
 fi
 unset GREP_OPTIONS
 
@@ -191,7 +193,6 @@ alias dnclean='dotnet clean'
 alias dnrun='dotnet run --os linux -p:WarningLevel=0'
 alias dnrestore='dotnet restore'
 
-
 # Keepass
 alias kp='keepassxc-cli'
 alias kpopen='kp open ~/Dropbox/KeePass/Passwords-DrewS-Desktop.kdbx -k ~/.keypass/KeePass.keyx'
@@ -201,45 +202,45 @@ alias kpopen='kp open ~/Dropbox/KeePass/Passwords-DrewS-Desktop.kdbx -k ~/.keypa
 # ------------------------------------------------------
 
 extract() {
-  for archive in "$@"; do
-    if [ -f "$archive" ]; then
-      case $archive in
-        *.tar.bz2) tar xvjf $archive ;;
-        *.tar.gz)  tar xvzf $archive ;;
-        *.bz2)     bunzip2 $archive ;;
-        *.rar)     rar x $archive ;;
-        *.gz)      gunzip $archive ;;
-        *.tar)     tar xvf $archive ;;
-        *.tbz2)    tar xvjf $archive ;;
-        *.tgz)     tar xvzf $archive ;;
-        *.zip)     unzip $archive ;;
-        *.Z)       uncompress $archive ;;
-        *.7z)      7z x $archive ;;
-        *)         echo "don't know how to extract '$archive'..." ;;
-      esac
-    else
-      echo "'$archive' is not a valid file!"
-    fi
-  done
+    for archive in "$@"; do
+        if [ -f "$archive" ]; then
+            case $archive in
+            *.tar.bz2) tar xvjf $archive ;;
+            *.tar.gz) tar xvzf $archive ;;
+            *.bz2) bunzip2 $archive ;;
+            *.rar) rar x $archive ;;
+            *.gz) gunzip $archive ;;
+            *.tar) tar xvf $archive ;;
+            *.tbz2) tar xvjf $archive ;;
+            *.tgz) tar xvzf $archive ;;
+            *.zip) unzip $archive ;;
+            *.Z) uncompress $archive ;;
+            *.7z) 7z x $archive ;;
+            *) echo "don't know how to extract '$archive'..." ;;
+            esac
+        else
+            echo "'$archive' is not a valid file!"
+        fi
+    done
 }
 
 up() {
-  local d=""
-  limit=$1
-  for ((i = 1; i <= limit; i++)); do
-    d=$d/..
-  done
-  d=$(echo $d | sed 's/^\///')
-  [ -z "$d" ] && d=..
-  cd $d
+    local d=""
+    limit=$1
+    for ((i = 1; i <= limit; i++)); do
+        d=$d/..
+    done
+    d=$(echo $d | sed 's/^\///')
+    [ -z "$d" ] && d=..
+    cd $d
 }
 
 cd() {
-  if [ -n "$1" ]; then
-    builtin cd "$@" && ls
-  else
-    builtin cd ~ && ls
-  fi
+    if [ -n "$1" ]; then
+        builtin cd "$@" && ls
+    else
+        builtin cd ~ && ls
+    fi
 }
 
 source ~/.bash_completion/alacritty
