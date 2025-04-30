@@ -8,13 +8,6 @@ function M.notify_status(bufnr)
 
 	local gs = vim.g.format_enabled and "true" or "false"
 	local bs = b.format_enabled and "true" or "false"
-	if bs == nil then
-		bs = "nil"
-	elseif bs == true then
-		bs = "true"
-	else
-		bs = "false"
-	end
 	vim.notify("Format State: G{" .. gs .. "} B{" .. bs .. "}")
 end
 
@@ -25,11 +18,11 @@ function M.is_enabled(bufnr)
 		b.format_enabled = true
 	end
 
-	return b.format_enabled
+	return b.format_enabled and vim.g.format_enabled
 end
 
-function M.enable(scope, bufnr)
-	bufnr = bufnr or vim.api.nvim_get_current_buf()
+function M.enable(scope)
+	local bufnr = vim.api.nvim_get_current_buf()
 	local b = vim.b[bufnr]
 	if scope == "global" then
 		vim.g.format_enabled = true
@@ -40,8 +33,8 @@ function M.enable(scope, bufnr)
 	M.notify_status(bufnr)
 end
 
-function M.disable(scope, bufnr)
-	bufnr = bufnr or vim.api.nvim_get_current_buf()
+function M.disable(scope)
+	local bufnr = vim.api.nvim_get_current_buf()
 	local b = vim.b[bufnr]
 	if scope == "global" then
 		vim.g.format_enabled = false
@@ -52,14 +45,15 @@ function M.disable(scope, bufnr)
 	M.notify_status(bufnr)
 end
 
-function M.toggle(scope, bufnr)
-	bufnr = bufnr or vim.api.nvim_get_current_buf()
+function M.toggle(scope)
+	local bufnr = vim.api.nvim_get_current_buf()
 	local b = vim.b[bufnr]
 	if scope == "global" then
 		vim.g.format_enabled = not vim.g.format_enabled
+	elseif b.format_enabled == nil then
+		b.format_enabled = false
 	else
-		local current = M.is_enabled(0)
-		b.format_enabled = not current
+		b.format_enabled = not b.format_enabled
 	end
 
 	M.notify_status(bufnr)

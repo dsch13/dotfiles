@@ -24,12 +24,10 @@ return {
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
 
                 local keys = require("config.plugins.lsp.keys")
-                local save = require("config.plugins.lsp.save")
                 local highlight = require("config.plugins.lsp.highlight")
 
                 -- region
                 keys.SetKeys(event, client)
-                save.Save(event, client)
                 highlight.highlight(event, client)
                 -- endregion
             end,

@@ -38,6 +38,26 @@ return {
 		},
 	},
 	init = function()
-		require("config.plugins.lsp.format")
+		local format = require("config.plugins.lsp.format")
+
+		vim.keymap.set("n", "<leader>ft", function()
+			format.toggle("buffer")
+		end, { desc = "[F]ormat [T]oggle" })
+		vim.keymap.set("n", "<leader>fe", function()
+			format.enable("buffer")
+		end, { desc = "[F]ormat [E]nable" })
+		vim.keymap.set("n", "<leader>fd", function()
+			format.disable("buffer")
+		end, { desc = "[F]ormat [D]isable" })
+
+		vim.keymap.set("n", "<leader>fT", function()
+			format.toggle("global")
+		end, { desc = "[F]ormat [T]oggle (global)" })
+		vim.keymap.set("n", "<leader>fE", function()
+			format.enable("global")
+		end, { desc = "[F]ormat [E]nable (global)" })
+		vim.keymap.set("n", "<leader>fD", function()
+			format.disable("global")
+		end, { desc = "[F]ormat [D]isable (global)" })
 	end,
 }

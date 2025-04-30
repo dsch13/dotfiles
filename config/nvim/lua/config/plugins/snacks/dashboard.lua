@@ -5,28 +5,28 @@ local M = {}
 ---@field sections snacks.dashboard.Section
 ---@field formats table<string, snacks.dashboard.Text|fun(item:snacks.dashboard.Item, ctx:snacks.dashboard.Format.ctx):snacks.dashboard.Text>
 M.dashboard = {
-    preset = {
-        header = [[
+	preset = {
+		header = [[
 ██████╗  ██████╗  ███████╗ ██╗    ██╗
 ██╔══██╗ ██╔══██╗ ██╔════╝ ██║    ██║
 ██║  ██║ ██████╔╝ █████╗   ██║ █╗ ██║
 ██║  ██║ ██╔══██╗ ██╔══╝   ██║███╗██║
 ██████╔╝ ██║  ██║ ███████╗ ╚███╔███╔╝
 ╚═════╝  ╚═╝  ╚═╝ ╚══════╝  ╚══╝╚══╝ ]],
-    },
-    sections = {
-        {
-            section = "terminal",
-            cmd = "chafa ~/.config/bound.png --format symbols --symbols vhalf --size 35x35; sleep .1",
-            height = 25,
-            padding = 1,
-        },
-        {
-            pane = 2,
-            -- { section = "header" },
-            { section = "keys",   gap = 1, padding = 1 },
-            { section = "startup" },
-        },
-    },
+	},
+	sections = {
+		{
+			section = "terminal",
+			cmd = "chafa ~/.config/bound.png --format symbols --symbols vhalf --size 35x35; sleep .1",
+			height = 25,
+			padding = 1,
+		},
+		{
+			pane = 2,
+			-- { section = "header" },
+			{ section = "keys", gap = 1, padding = 1 },
+			{ section = "startup" },
+		},
+	},
 }
 return M
