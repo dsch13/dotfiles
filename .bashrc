@@ -63,7 +63,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 # Android
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
-export JAVA_HOME="$HOME/.jdks/jbr-17.0.12"
+export JAVA_HOME="$HOME/.jdks/jbr-21.0.6"
 export PATH="$JAVA_HOME/bin:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$PATH"
 
 # .NET
