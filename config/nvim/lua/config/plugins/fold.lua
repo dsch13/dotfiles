@@ -6,8 +6,8 @@ return {
 	opts = {
 		fold_virt_text_handler = require("config.plugins.fold.virtualText").handler,
 		close_fold_kinds_for_ft = {
-			default = { "region", "imports", "comment" },
-			typescript = { "region", "imports", "comment" },
+			default = {},
+			typescript = { "region", "imports" },
 		},
 	},
 	init = function()
@@ -16,7 +16,7 @@ return {
 		-- region Test Region folding
 		vim.opt.foldcolumn = "auto:1"
 		vim.opt.foldlevel = 99
-		vim.opt.foldlevelstart = 10
+		vim.opt.foldlevelstart = 99
 		vim.opt.foldenable = true
 		-- endregion
 
