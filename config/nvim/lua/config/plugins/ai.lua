@@ -1,164 +1,31 @@
-return {}
-
--- return {
---     "yetone/avante.nvim",
---     event = "VeryLazy",
---     version = false,
---     opts = {
---         provider = "ollama",
---         auto_suggestions_provider = "ollama",
---         cursor_applying_provider = "ollama",
---         behaviour = {
---             auto_suggestions = true,
---             enable_cursor_planning_model = true,
---             enable_token_counting = false,
---         },
---         ollama = {
---             model = "qwen2.5-coder:3b",
---         },
---         file_selector = {
---             provider = "telescope",
---         },
---     },
---     build = "make",
---     dependencies = {
---         "nvim-treesitter/nvim-treesitter",
---         "stevearc/dressing.nvim",
---         "nvim-lua/plenary.nvim",
---         "MunifTanjim/nui.nvim",
---         "echasnovski/mini.pick",
---         "nvim-telescope/telescope.nvim",
---         "echasnovski/mini.icons",
---         {
---             -- Make sure to set this up properly if you have lazy=true
---             "MeanderingProgrammer/render-markdown.nvim",
---             opts = {
---                 file_types = { "markdown", "Avante" },
---             },
---             ft = { "markdown", "Avante" },
---         },
---     },
---     init = function()
---         require("avante.config").override({
---             system_prompt = [[
--- ````
--- You are an intelligent programmer. You are happy to help answer any questions that the user has (usually they will be about coding).
---
--- 1. When the user is asking for edits to their code, please output a simplified version of the code block that highlights the changes necessary and adds comments to indicate where unchanged code has been skipped. For example:
--- ````language:path/to/file
--- // ... existing code ...
--- {{ edit_1 }}
--- // ... existing code ...
--- {{ edit_2 }}
--- // ... existing code ...
--- ````
--- The user can see the entire file, so they prefer to only read the updates to the code. Often this will mean that the start/end of the file will be skipped, but that's okay. Rewrite the entire file only if specifically requested. Always provide a brief explanation of the updates, unless the user specifically requests only the code.
---
--- 2. Do not lie or make up facts.
---
--- 3. If a user messages you in a foreign language, please respond in that language.
---
--- 4. Format your response in markdown.
---
--- 5. When writing out new code blocks, please specify the language ID after the initial backticks, like so:
--- ````python
--- {{ code }}
--- ````
---
--- 6. When writing out code blocks for an existing file, please also specify the file path after the initial backticks and restate the method / class your codeblock belongs to, like so:
--- ````language:some/other/file
--- function AIChatHistory() {
---     ...
---     {{ code }}
---     ...
--- }
--- ````
---             ]]
---         })
---     end
--- }
-
--- return {
---     "olimorris/codecompanion.nvim",
---     config = true,
---     dependencies = {
---         "nvim-lua/plenary.nvim",
---         "nvim-treesitter/nvim-treesitter",
---         {
---             "MeanderingProgrammer/render-markdown.nvim",
---             ft = { "markdown", "codecompanion" }
---         },
---     },
---     opts = {
---         adapters = {
---             ollama = function()
---                 return require("codecompanion.adapters").extend("ollama", {
---                     schema = {
---                         model = {
---                             default = "qwen2.5-coder:7b"
---                         },
---                         num_ctx = {
---                             default = 20000,
---                         },
---                     },
---                 })
---             end
---         },
---         strategies = {
---             chat = {
---                 adapter = "ollama",
---             },
---             inline = {
---                 adapter = "ollama",
---             },
---             slash_commands = {
---                 ["buffer"] = {
---                     opts = {
---                         provider = "snacks",
---                         keymaps = {
---                             modes = {
---                                 i = "<C-b>",
---                             },
---                         },
---                     },
---                 },
---                 ["help"] = {
---                     opts = {
---                         provider = "snacks",
---                         max_lines = 1000,
---                     },
---                 },
---                 ["file"] = {
---                     opts = {
---                         provider = "snacks",
---                     },
---                 },
---                 ["symbols"] = {
---                     opts = {
---                         provider = "snacks",
---                     },
---                 },
---             },
---         },
---         display = {
---             action_pallete = {
---                 width = 180,
---                 provider = "telescope",
---             },
---             chat = {
---                 show_token_count = false,
---
---                 window = {
---                     width = 0.33,
---                     position = "right"
---                 }
---             }
---         },
---     },
---     init = function()
---         vim.keymap.set("n", "<leader>ac", "<cmd>CodeCompanionChat<CR>", { desc = "[A]i [C]hat" })
---         vim.keymap.set("n", "<leader>at", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "[A]i Chat [T]oggle" })
---         vim.keymap.set("n", "<leader>aa", "<cmd>CodeCompanionActions<CR>", { desc = "[A]i [A]ctions" })
---         vim.keymap.set("v", "<leader>ac", function() vim.cmd("CodeCompanion") end, { desc = "[A]i [C]hat" })
---     end
--- }
+return {
+	"yetone/avante.nvim",
+	event = "VeryLazy",
+	version = false,
+	opts = {
+		provider = "copilot",
+		auto_suggestions_provider = nil,
+		behavior = {
+			use_cwd_as_project_root = true,
+		},
+		file_selector = {
+			provider = "telescope",
+		},
+	},
+	build = "make",
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
+		"nvim-lua/plenary.nvim",
+		"MunifTanjim/nui.nvim",
+		"nvim-telescope/telescope.nvim",
+		"zbirenbaum/copilot.lua",
+		"stevearc/dressing.nvim",
+		{
+			"MeanderingProgrammer/render-markdown.nvim",
+			opts = {
+				file_types = { "markdown", "Avante" },
+			},
+			ft = { "markdown", "Avante" },
+		},
+	},
+}

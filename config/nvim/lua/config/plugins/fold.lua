@@ -8,6 +8,7 @@ return {
 		close_fold_kinds_for_ft = {
 			default = {},
 			typescript = { "region", "imports" },
+			cs = { "region", "imports" },
 		},
 	},
 	init = function()

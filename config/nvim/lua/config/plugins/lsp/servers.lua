@@ -25,6 +25,7 @@ M.server_configs = {
 	},
 	["vue-language-server"] = {
 		filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+		cmd = { "vue-language-server", "--stdio" },
 		init_options = {
 			vue = {
 				hybridMode = false,
