@@ -24,8 +24,11 @@ M.server_configs = {
 		},
 	},
 	["vue-language-server"] = {
+		cmd = {
+			vim.fn.stdpath("data") .. "/mason/bin/vue-language-server",
+			"--stdio",
+		},
 		filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-		cmd = { "vue-language-server", "--stdio" },
 		init_options = {
 			vue = {
 				hybridMode = false,
