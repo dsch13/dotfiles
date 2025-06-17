@@ -1,4 +1,16 @@
-local server_configs = {
+local servers_plain = {
+	"cssls",
+	"html",
+	"roslyn",
+	"ruff",
+	"rzls",
+	"tailwindcss",
+	"ts_ls",
+}
+
+local M = {}
+
+M.server_configs = {
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -39,26 +51,11 @@ local server_configs = {
 		},
 	},
 }
-
-local servers_plain = {
-	"cssls",
-	"html",
-	"roslyn",
-	"ruff",
-	"rzls",
-	"tailwindcss",
-	"ts_ls",
-}
-
-local server_disable = {
-	"ts_ls",
-}
-
-local M = {}
-
-M.server_configs = server_configs
 M.servers_plain = servers_plain
-M.server_names = vim.list_extend(vim.tbl_keys(server_configs), servers_plain)
-M.disable = server_disable
+local server_names = vim.tbl_keys(M.server_configs)
+M.server_names = vim.list_extend(server_names, servers_plain)
+M.disable = {
+	"ts_ls",
+}
 
 return M
