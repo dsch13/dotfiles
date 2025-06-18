@@ -35,6 +35,26 @@ return {
 				args = { "format", "--write-stdout" },
 				stdin = true,
 			},
+			stylua = {
+				command = "stylua",
+				args = { "-" },
+				stdin = true,
+			},
+			ruff_format = {
+				command = "ruff",
+				args = { "--stdin-filename", "${INPUT}", "-" },
+				stdin = true,
+			},
+			prettier = {
+				command = "prettier",
+				args = { "--stdin-filepath", "${INPUT}" },
+				stdin = true,
+			},
+			shfmt = {
+				command = "shfmt",
+				args = { "-i", "2" },
+				stdin = true,
+			},
 		},
 	},
 	init = function()

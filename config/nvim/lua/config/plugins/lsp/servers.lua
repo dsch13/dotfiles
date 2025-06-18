@@ -1,17 +1,39 @@
 local servers_plain = {
-	"cssls",
-	"html",
-	"roslyn",
-	"ruff",
-	"rzls",
-	"tailwindcss",
-	"ts_ls",
+	{
+		name = "cssls",
+		cmd = { "vscode-css-language-server", "--stdio" },
+	},
+	{
+		name = "html",
+		cmd = { "vscode-html-language-server", "--stdio" },
+	},
+	{
+		name = "roslyn",
+		cmd = { "dotnet", "roslyn-lsp.dll" },
+	},
+	{
+		name = "ruff",
+		cmd = { "ruff-lsp" },
+	},
+	{
+		name = "rzls",
+		cmd = { "rust-analyzer" },
+	},
+	{
+		name = "tailwindcss",
+		cmd = { "tailwindcss-language-server", "--stdio" },
+	},
+	{
+		name = "ts_ls",
+		cmd = { "typescript-language-server", "--stdio" },
+	},
 }
 
 local M = {}
 
 M.server_configs = {
 	lua_ls = {
+		cmd = { "lua-language-server" },
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -49,16 +71,38 @@ M.server_configs = {
 		},
 	},
 	basedpyright = {
+		cmd = { "basedpyright-langserver", "--stdio" },
 		init_options = {
 			provideFormatter = false,
 		},
 	},
 }
 M.servers_plain = servers_plain
-local server_names = vim.tbl_keys(M.server_configs)
-M.server_names = vim.list_extend(server_names, servers_plain)
+
+M.server_names = vim.list_extend(
+	vim.tbl_keys(M.server_configs),
+	vim.tbl_map(function(server)
+		return server.name
+	end, servers_plain)
+)
+
 M.disable = {
+	-- lsp
 	"ts_ls",
+
+	-- dap
+	"debugpy",
+	"netcoredbg",
+
+	-- linters
+	"mypy",
+
+	-- formatters
+	"csharpier",
+	"ruff",
+	"stylua",
+	"prettier",
+	"shfmt",
 }
 
 return M
