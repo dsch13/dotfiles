@@ -10,14 +10,6 @@ return {
 		"saghen/blink.cmp",
 	},
 	config = function()
-		vim.diagnostic.config({
-			virtual_text = { spacing = 4, prefix = "●" },
-			signs = true,
-			underline = true,
-			update_in_insert = false,
-			severity_sort = true,
-		})
-
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("config-lsp-attach", { clear = true }),
 			callback = function(event)
@@ -25,11 +17,13 @@ return {
 
 				local keys = require("config.plugins.lsp.keys")
 				local highlight = require("config.plugins.lsp.highlight")
+				local diagnostics = require("config.plugins.lsp.diagnostics")
+				local autocmd = require("config.plugins.lsp.autocmd")
 
-				-- region
-				keys.SetKeys(event, client)
+				keys.set_keys(event, client)
 				highlight.highlight(event, client)
-				-- endregion
+				diagnostics.setup_diagnostics()
+				autocmd.setup()
 			end,
 		})
 
