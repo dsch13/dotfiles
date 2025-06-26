@@ -186,6 +186,7 @@ alias rmq='docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbi
 alias boundvpn='openvpn3 session-start --config bnd-dev'
 alias pullmaster='pull_all_master.sh'
 alias restoremaster='restore_states.sh'
+alias hammerhead='cd ~/Bound/Repos/hammerhead && .venv/bin/python Hammerhead.py'
 
 # Dotnet
 alias dnbuild='dotnet build --os linux -p:WarningLevel=0'
