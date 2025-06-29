@@ -42,12 +42,12 @@ return {
 			},
 			ruff_format = {
 				command = "ruff",
-				args = { "--stdin-filename", "${INPUT}", "-" },
+				args = { "--stdin-filename", "$FILENAME", "-" },
 				stdin = true,
 			},
 			prettier = {
 				command = "prettier",
-				args = { "--stdin-filepath", "${INPUT}" },
+				args = { "--stdin-filepath", "$FILENAME" },
 				stdin = true,
 			},
 			shfmt = {
