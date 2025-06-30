@@ -26,6 +26,10 @@ return {
 		config = function()
 			local ensure_installed = require("config.plugins.lsp.servers").server_names
 			vim.list_extend(ensure_installed, {
+				-- lsp (complicated setup, ensure installed, but not configured in normal flow).
+				"roslyn",
+				"rzls",
+
 				-- dap
 				"debugpy",
 				"netcoredbg",

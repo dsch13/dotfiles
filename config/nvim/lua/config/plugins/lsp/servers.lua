@@ -8,16 +8,8 @@ local servers_plain = {
 		cmd = { "vscode-html-language-server", "--stdio" },
 	},
 	{
-		name = "roslyn",
-		cmd = { "dotnet", "roslyn-lsp.dll" },
-	},
-	{
 		name = "ruff",
 		cmd = { "ruff-lsp" },
-	},
-	{
-		name = "rzls",
-		cmd = { "rust-analyzer" },
 	},
 	{
 		name = "tailwindcss",
