@@ -33,6 +33,10 @@ return {
 			lineFoldingOnly = true,
 		}
 
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+		})
+
 		local servers = require("config.plugins.lsp.servers")
 		local server_names = servers.server_names
 		local servers_complex = servers.server_configs
@@ -44,7 +48,6 @@ return {
 
 		for _, server_name in pairs(server_names) do
 			local server_config = servers_complex[server_name] or {}
-			server_config.capabilities = vim.tbl_deep_extend("force", capabilities, server_config.capabilities or {})
 			vim.lsp.config(server_name, server_config)
 			vim.lsp.enable(server_name, not vim.list_contains(servers_disable, server_name))
 		end

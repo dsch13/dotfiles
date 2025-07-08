@@ -73,17 +73,9 @@ return {
 			})
 			vim.lsp.enable("rzls", true)
 		end,
-		-- init = function()
-		-- 	vim.filetype.add({
-		-- 		extension = {
-		-- 			razor = "razor",
-		-- 			cshtml = "razor",
-		-- 		},
-		-- 	})
-		-- end,
 	},
 	-- {
-	--     "jlcrochet/vim-razor",
-	--     ft = { "razor" }
-	-- }
+	-- 	"tris203/tree-sitter-razor",
+	-- 	ft = { "razor" },
+	-- },
 }
