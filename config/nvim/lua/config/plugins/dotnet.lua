@@ -1,3 +1,5 @@
+local rzls_enabled = true
+
 local function roslyn_cmd()
 	local mason_path = vim.fn.stdpath("data") .. "/mason/packages/roslyn"
 	local rzls_path = vim.fn.expand("$MASON/packages/rzls/libexec")
@@ -71,11 +73,16 @@ return {
 			vim.lsp.config("rzls", {
 				cmd = { "rzls" },
 			})
-			vim.lsp.enable("rzls", true)
+			vim.lsp.enable("rzls", rzls_enabled)
 		end,
 	},
 	-- {
 	-- 	"tris203/tree-sitter-razor",
 	-- 	ft = { "razor" },
 	-- },
+	vim.api.nvim_create_user_command("ToggleRzls", function()
+		rzls_enabled = not rzls_enabled
+		vim.notify("rzls is " .. (rzls_enabled and "enabled" or "disabled"))
+		vim.lsp.enable("rzls", rzls_enabled)
+	end, {}),
 }
