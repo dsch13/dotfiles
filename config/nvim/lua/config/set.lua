@@ -54,9 +54,6 @@ vim.opt.sidescrolloff = 10
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- color column for wrapping
-vim.opt.colorcolumn = "160"
-
 -- Statusline on last window
 vim.opt.laststatus = 3
 
