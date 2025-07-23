@@ -11,6 +11,10 @@ iatest=$(expr index "$-" i)
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 [ -f ~/.bash_imports ] && . ~/.bash_imports
 
+if [ -n "$SSH_CONNECTION" ]; then
+  echo -ne "\033]0;🌐 SSH: $(hostname)\007"
+fi
+
 # ------------------------------------------------------
 # Shell behavior and completion
 # ------------------------------------------------------

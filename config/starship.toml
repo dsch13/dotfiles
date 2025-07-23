@@ -11,7 +11,7 @@ $c\
 $cmd_duration\
 $custom\
 $time\
-$username\
+$hostname\
 $line_break\
 $character\
 """
@@ -101,6 +101,9 @@ format = '[─](fg:overlay)[](fg:love)[$symbol](fg:highlight_low bg:love)[
 [username]
 format = '[─](fg:overlay)[](fg:iris)[ ](fg:highlight_low bg:iris)[](fg:iris bg:overlay)[ $user](fg:iris bg:overlay)[](fg:overlay) '
 show_always = false
+
+[hostname]
+format = '[─](fg:overlay)[](fg:iris)[ ](fg:highlight_low bg:iris)[](fg:iris bg:overlay)[ $hostname](fg:iris bg:overlay)[](fg:overlay) '
 
 [character]
 format = '[╰─$symbol ](fg:overlay)'
