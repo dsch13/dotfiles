@@ -1,3 +1,6 @@
+-- yank and paste keymaps
+vim.keymap.set("n", "Y", "yy", { desc = "Yank entire line" })
+
 -- diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { desc = "Open [F]loat text" })
