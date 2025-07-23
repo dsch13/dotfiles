@@ -244,4 +244,18 @@ cd() {
   fi
 }
 
+avd-coldboot() {
+  echo 'Choose Android AVD to cold-boot:'
+
+  select avd in $(emulator -list-avds); do
+    if [ -n "$avd" ]; then
+      echo "Cold-booting AVD '$avd'"
+      nohup emulator @$avd -no-snapshot-load &
+      break
+    else
+      echo "Unknown option: '$REPLY'"
+    fi
+  done
+}
+
 source ~/.bash_completion/alacritty
