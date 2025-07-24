@@ -15,10 +15,6 @@ local servers_plain = {
 		name = "tailwindcss",
 		cmd = { "tailwindcss-language-server", "--stdio" },
 	},
-	{
-		name = "ts_ls",
-		cmd = { "typescript-language-server", "--stdio" },
-	},
 }
 
 local M = {}
@@ -37,30 +33,52 @@ M.server_configs = {
 			},
 		},
 	},
-	["vue-language-server"] = {
-		cmd = {
-			vim.fn.stdpath("data") .. "/mason/bin/vue-language-server",
-			"--stdio",
+	vtsls = {
+		settings = {
+			vtsls = {
+				tsserver = {
+					globalPlugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vim.fn.stdpath("data") .. "/mason/bin/vue-language-server",
+							languages = { "vue" },
+							configNamespace = "typescript",
+						},
+					},
+				},
+			},
 		},
 		filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-		init_options = {
-			vue = {
-				hybridMode = false,
-			},
-			typescript = {
-				tsdk = vim.fn.stdpath("data")
-					.. "/mason/packages/typescript-language-server/node_modules/typescript/lib",
-			},
-			languageFeatures = {
-				diagnostics = {
-					className = true,
-				},
-				semanticTokens = true,
-			},
-			documentFeatures = {
-				classNameCompletion = true,
-			},
-		},
+	},
+	["vue_ls"] = {
+		on_init = function(client)
+			client.handlers["tsserver/request"] = function(_, result, context)
+				local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = "vtsls" })
+				if #clients == 0 then
+					vim.notify(
+						"Could not found `vtsls` lsp client, vue_lsp would not work without it.",
+						vim.log.levels.ERROR
+					)
+					return
+				end
+				local ts_client = clients[1]
+
+				local param = unpack(result)
+				local id, command, payload = unpack(param)
+				ts_client:exec_cmd({
+					title = "vue_request_forward", -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
+					command = "typescript.tsserverRequest",
+					arguments = {
+						command,
+						payload,
+					},
+				}, { bufnr = context.bufnr }, function(_, r)
+					local response_data = { { id, r.body } }
+					---@diagnostic disable-next-line: param-type-mismatch
+					client:notify("tsserver/response", response_data)
+				end)
+			end
+		end,
 	},
 	basedpyright = {
 		cmd = { "basedpyright-langserver", "--stdio" },
@@ -79,9 +97,6 @@ M.server_names = vim.list_extend(
 )
 
 M.disable = {
-	-- lsp
-	"ts_ls",
-
 	-- dap
 	"debugpy",
 	"netcoredbg",

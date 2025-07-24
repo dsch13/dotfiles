@@ -10,6 +10,7 @@ iatest=$(expr index "$-" i)
 [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 [ -f ~/.bash_imports ] && . ~/.bash_imports
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 if [ -n "$SSH_CONNECTION" ]; then
   echo -ne "\033]0;🌐 SSH: $(hostname)\007"
@@ -18,14 +19,16 @@ fi
 # ------------------------------------------------------
 # Shell behavior and completion
 # ------------------------------------------------------
-[[ $iatest -gt 0 ]] && bind "set completion-ignore-case on"
-[[ $iatest -gt 0 ]] && bind "set show-all-if-ambiguous On"
-[[ $iatest -gt 0 ]] && bind "set bell-style visible"
-[[ $- == *i* ]] && stty -ixon
+if [[ $- == *i* ]]; then
+  bind "set completion-ignore-case on"
+  bind "set show-all-if-ambiguous On"
+  bind "set bell-style visible"
+  stty -ixon
 
-# Better history navigation (arrow up/down filters by prefix)
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+  # Better history navigation (arrow up/down filters by prefix)
+  bind '"\e[A": history-search-backward'
+  bind '"\e[B": history-search-forward'
+fi
 
 # ------------------------------------------------------
 # Environment Variables
@@ -191,6 +194,7 @@ alias boundvpn='openvpn3 session-start --config bnd-dev'
 alias pullmaster='pull_all_master.sh'
 alias restoremaster='restore_states.sh'
 alias hammerhead='cd ~/Bound/Repos/hammerhead && .venv/bin/python Hammerhead.py'
+alias boundcert='mkcert -pkcs12 -p12-file kestrel.pfx'
 
 # Dotnet
 alias dnbuild='dotnet build --os linux -p:WarningLevel=0'
