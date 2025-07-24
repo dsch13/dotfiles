@@ -1,4 +1,4 @@
-local rzls_enabled = true
+local rzls_enabled = false
 
 local function roslyn_cmd()
 	local mason_path = vim.fn.stdpath("data") .. "/mason/packages/roslyn"
@@ -33,6 +33,7 @@ return {
 		dependencies = {
 			{
 				"tris203/rzls.nvim",
+				enabled = rzls_enabled,
 				config = function()
 					---@diagnostic disable-next-line: missing-fields
 					require("rzls").setup({})
@@ -42,11 +43,10 @@ return {
 		config = function()
 			require("roslyn").setup({
 				filewatching = "off",
-				handlers = require("rzls.roslyn_handlers"),
 			})
 			vim.lsp.config("roslyn", {
 				cmd = roslyn_cmd(),
-				handlers = require("rzls.roslyn_handlers"),
+				handlers = rzls_enabled and require("rzls.roslyn_handlers") or nil,
 				settings = {
 					["csharp|inlay_hints"] = {
 						csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -70,10 +70,12 @@ return {
 			})
 			vim.lsp.enable("roslyn", true)
 
-			vim.lsp.config("rzls", {
-				cmd = { "rzls" },
-			})
-			vim.lsp.enable("rzls", rzls_enabled)
+			if rzls_enabled then
+				vim.lsp.config("rzls", {
+					cmd = { "rzls" },
+				})
+				vim.lsp.enable("rzls", true)
+			end
 		end,
 	},
 	-- {

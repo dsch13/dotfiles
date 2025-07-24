@@ -2,10 +2,10 @@ return {
 	"tpope/vim-fugitive",
 	keys = {
 		{ "<leader>gc", vim.cmd.Git, desc = "[G]it [C]ommand" },
-		{ "n", "<leader>gl", ":0Gclog<CR>", desc = "[G]it [L]og" },
+		{ "<leader>gl", ":0Gclog<CR>", desc = "[G]it [L]og" },
 		{ "<leader>gsl", ":Gclog --grep= --<left><left><left>", desc = "[G]it [S]earch [H]istory" },
 		{ "<leader>gsc", ":Gclog -S --<left><left><left>", desc = "[G]it [S]earch [C]hanges" },
-		{ "<leader>gg", ":Ggrep ''<left>", desc = "[G]it [L]og" },
+		{ "<leader>gg", ":Ggrep ''<left>", desc = "[G]it [G]og" },
 	},
 	cmd = { "Git", "G" },
 	config = function()
