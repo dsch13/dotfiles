@@ -61,7 +61,7 @@ return {
 			})
 
 			require("mini.surround").setup({})
-			vim.keymap.set("n", "s", "<NOP>", { noremap = true, silent = true })
+			vim.keymap.set({ "n", "x" }, "s", "<NOP>", { noremap = true, silent = true })
 		end,
 	},
 }
