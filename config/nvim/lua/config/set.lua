@@ -1,6 +1,8 @@
 -- setup line numbering
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
 vim.opt.signcolumn = "yes"
 
 -- setup tabsize
@@ -42,9 +44,6 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- live preview substitutions
 vim.opt.inccommand = "split"
-
--- show which line your cursor is on
-vim.opt.cursorline = true
 
 -- keep 10 lines between cursor and edge of screen
 vim.opt.scrolloff = 10
