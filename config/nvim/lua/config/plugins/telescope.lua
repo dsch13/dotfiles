@@ -27,6 +27,12 @@ return {
 					theme = "ivy",
 					initial_mode = "normal",
 				},
+				marks = {
+					theme = "ivy",
+					initial_mode = "normal",
+					sort_mru = true,
+					sort_lastused = true,
+				},
 				buffers = {
 					theme = "ivy",
 					initial_mode = "normal",
@@ -80,6 +86,7 @@ return {
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = "[S]earch Recent Files" })
 		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+		vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "[M]arks" })
 
 		vim.keymap.set("n", "<leader>/", function()
 			builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
