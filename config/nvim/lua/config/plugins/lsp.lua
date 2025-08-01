@@ -2,10 +2,10 @@
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
+	lazy = true,
 	dependencies = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"j-hui/fidget.nvim",
 		"saghen/blink.cmp",
 	},
@@ -41,10 +41,6 @@ return {
 		local server_names = servers.server_names
 		local servers_complex = servers.server_configs
 		local servers_disable = servers.disable
-
-		require("mason-lspconfig").setup({
-			automatic_enable = false,
-		})
 
 		for _, server_name in pairs(server_names) do
 			local server_config = servers_complex[server_name] or {}
