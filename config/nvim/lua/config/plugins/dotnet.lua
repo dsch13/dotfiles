@@ -42,6 +42,7 @@ return {
 		},
 		config = function()
 			require("roslyn").setup({
+				cmd = roslyn_cmd(),
 				filewatching = "off",
 			})
 			vim.lsp.config("roslyn", {
@@ -70,12 +71,10 @@ return {
 			})
 			vim.lsp.enable("roslyn", true)
 
-			if rzls_enabled then
-				vim.lsp.config("rzls", {
-					cmd = { "rzls" },
-				})
-				vim.lsp.enable("rzls", true)
-			end
+			vim.lsp.config("rzls", {
+				cmd = { "rzls" },
+			})
+			vim.lsp.enable("rzls", rzls_enabled)
 		end,
 	},
 	-- {
