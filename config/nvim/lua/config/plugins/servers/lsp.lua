@@ -11,7 +11,7 @@ return {
 			init_options = { provideFormatter = false },
 		},
 	},
-	["bash-language-server"] = {
+	["bashls"] = {
 		cmd = { "bash-language-server", "start" },
 		config = {
 			filetypes = { "bash", "sh" },
