@@ -24,26 +24,12 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
-			local ensure_installed = require("config.plugins.lsp.servers").server_names
-			vim.list_extend(ensure_installed, {
-				-- lsp (complicated setup, ensure installed, but not configured in normal flow).
-				"roslyn",
-				"rzls",
+			local ensure_installed = {}
+			vim.list_extend(ensure_installed, require("config.plugins.servers.dap"))
+			vim.list_extend(ensure_installed, require("config.plugins.servers.formatter"))
+			vim.list_extend(ensure_installed, require("config.plugins.servers.linter"))
+			vim.list_extend(ensure_installed, vim.tbl_keys(require("config.plugins.servers.lsp")))
 
-				-- dap
-				"debugpy",
-				"netcoredbg",
-
-				-- linters
-				"mypy",
-
-				-- formatters
-				"csharpier",
-				"ruff",
-				"stylua",
-				"prettier",
-				"shfmt",
-			})
 			require("mason-tool-installer").setup({
 				ensure_installed = ensure_installed,
 				auto_update = false,

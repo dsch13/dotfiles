@@ -1,0 +1,1 @@
+return { "debugpy", "netcoredbg" }

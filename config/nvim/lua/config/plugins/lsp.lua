@@ -37,15 +37,15 @@ return {
 			capabilities = capabilities,
 		})
 
-		local servers = require("config.plugins.lsp.servers")
-		local server_names = servers.server_names
-		local servers_complex = servers.server_configs
-		local servers_disable = servers.disable
+		local servers = require("config.plugins.servers.lsp")
 
-		for _, server_name in pairs(server_names) do
-			local server_config = servers_complex[server_name] or {}
-			vim.lsp.config(server_name, server_config)
-			vim.lsp.enable(server_name, not vim.list_contains(servers_disable, server_name))
+		for name, server in pairs(servers) do
+			if not server.disabled then
+				local server_config = server.config or {}
+				vim.lsp.config(name, server_config)
+				---@diagnostic disable-next-line: param-type-mismatch
+				vim.lsp.enable(name, server.disabled or true)
+			end
 		end
 	end,
 }
