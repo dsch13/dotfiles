@@ -157,22 +157,6 @@ alias ungz='tar -xvzf'
 # Logs
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 
-# Git
-alias ga='git add'
-alias gaa='git add .'
-alias gb='git branch'
-alias gbr='git branch -r'
-alias gca='git commit -a'
-alias gcm='git commit -m'
-alias gcam='git commit -am'
-alias gco='git checkout'
-alias gcb='git checkout -b'
-alias gf='git fetch'
-alias gl='git log --oneline --graph --decorate --all'
-alias gs='git status -sb'
-alias gp='git push'
-alias gpl='git pull'
-
 # Grep fallback
 if command -v rg &>/dev/null; then
   alias grep='rg'
