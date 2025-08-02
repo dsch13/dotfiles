@@ -76,8 +76,6 @@ export PATH="$JAVA_HOME/bin:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/platfo
 # .NET
 export DOTNET_ROOT=/usr/share/dotnet
 export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
-export HANGFIRE_LOGIN=ASPiSolutions
-export HANGFIRE_PASSWORD=YSTjzJfweWfSJ89x
 
 # PyEnv
 export PYENV_ROOT="$HOME/.pyenv"
