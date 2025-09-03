@@ -24,5 +24,8 @@ startup_mode = "Maximized"
 [selection]
 save_to_clipboard = true
 
+[terminal]
+osc52 = "CopyPaste"
+
 [env]
 TERM = "xterm-256color"

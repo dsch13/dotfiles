@@ -32,8 +32,11 @@ return {
 		provider = "copilot",
 		providers = {
 			copilot = {
-				disabled_tools = { "web_search" },
+				model = "claude-3.7-sonnet",
 			},
+		},
+		prompt_logger = {
+			enabled = false,
 		},
 		auto_suggestions_provider = nil,
 		behavior = {
@@ -43,14 +46,17 @@ return {
 		file_selector = {
 			provider = "telescope",
 		},
-		system_prompt = function()
-			local hub = require("mcphub").get_hub_instance()
-			return hub and hub:get_active_servers_prompt() or ""
-		end,
-		custom_tools = function()
-			return {
-				require("mcphub.extensions.avante").mcp_tool(),
-			}
-		end,
+		web_search_engine = {
+			provider = "google",
+		},
+		-- system_prompt = function()
+		-- 	local hub = require("mcphub").get_hub_instance()
+		-- 	return hub and hub:get_active_servers_prompt() or ""
+		-- end,
+		-- custom_tools = function()
+		-- 	return {
+		-- 		require("mcphub.extensions.avante").mcp_tool(),
+		-- 	}
+		-- end,
 	},
 }

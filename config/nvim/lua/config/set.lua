@@ -24,11 +24,6 @@ vim.opt.termguicolors = true
 -- enable mouse
 vim.opt.mouse = "a"
 
--- use system clipboard
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
-
 -- wrap text and end of window
 vim.opt.breakindent = true
 

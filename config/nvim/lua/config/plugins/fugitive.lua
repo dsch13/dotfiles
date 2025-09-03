@@ -36,8 +36,8 @@ return {
 			end,
 		})
 
-		vim.keymap.set("n", "go", "<cmd>diffget //2<CR>")
-		vim.keymap.set("n", "gt", "<cmd>diffget //3<CR>")
+		vim.keymap.set("n", "<leader>gth", "<cmd>diffget //2<CR>", { desc = "[G]it [T]ake Left " })
+		vim.keymap.set("n", "<leader>gtl", "<cmd>diffget //3<CR>", { desc = "[G]it [T]ake Right " })
 	end,
 	init = function() end,
 }

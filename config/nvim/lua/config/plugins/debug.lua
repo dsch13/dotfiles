@@ -19,7 +19,7 @@ return {
 
 		local dap = require("dap")
 
-		require("dap.ext.vscode").getconfigs(nil, {})
+		require("dap.ext.vscode").getconfigs(nil)
 
 		require("config.plugins.debug.cs").setup(dap)
 		require("config.plugins.debug.python").setup(dap)

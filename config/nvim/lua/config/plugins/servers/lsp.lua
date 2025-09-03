@@ -61,6 +61,9 @@ return {
 			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 		},
 	},
+	gopls = {
+		cmd = { "gopls" },
+	},
 	roslyn = {
 		disabled = true,
 	},
