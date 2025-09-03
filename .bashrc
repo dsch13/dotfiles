@@ -11,6 +11,7 @@ iatest=$(expr index "$-" i)
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 [ -f ~/.bash_imports ] && . ~/.bash_imports
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f ~/.bash_profile ] && . ~/.bash_profile
 
 if [ -n "$SSH_CONNECTION" ]; then
   echo -ne "\033]0;🌐 SSH: $(hostname)\007"
@@ -115,7 +116,6 @@ alias reload='source ~/.bashrc && echo ".bashrc reloaded"'
 alias edf='nvim ~/tools/dotfiles/'
 
 # Safer core utils
-alias cp='cp -i'
 alias copy='cp'
 alias mv='mv -i'
 alias rm='trash -v'
@@ -171,11 +171,11 @@ alias topmem='/bin/ps -eo pmem,pid,user,args | sort -k 1 -r | head -10'
 
 # Development
 alias tmuxs='tmux new-session -s ${PWD##*/}'
-alias rmq='docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management'
+alias rmq='docker run -d --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management'
 alias boundvpn='openvpn3 session-start --config bnd-dev'
 alias pullmaster='pull_all_master.sh'
 alias restoremaster='restore_states.sh'
-alias hammerhead='cd ~/Bound/Repos/hammerhead && .venv/bin/python Hammerhead.py'
+alias hammerhead='(cd ~/Bound/Repos/hammerhead && .venv/bin/python Hammerhead.py)'
 alias boundcert='mkcert -pkcs12 -p12-file kestrel.pfx'
 
 # Dotnet
