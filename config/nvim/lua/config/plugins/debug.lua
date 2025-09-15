@@ -8,6 +8,7 @@ return {
 		"rcarriga/nvim-dap-ui",
 		"theHamsta/nvim-dap-virtual-text",
 		"jbyuki/one-small-step-for-vimkind",
+		{ "Joakker/lua-json5", build = "./install.sh" },
 	},
 	init = function()
 		require("mason-nvim-dap").setup({
@@ -19,6 +20,7 @@ return {
 
 		local dap = require("dap")
 
+		require("dap.ext.vscode").json_decode = require("json5").parse
 		require("dap.ext.vscode").getconfigs(nil)
 
 		require("config.plugins.debug.cs").setup(dap)

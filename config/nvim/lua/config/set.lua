@@ -51,6 +51,14 @@ vim.opt.smartcase = true
 -- Statusline on last window
 vim.opt.laststatus = 3
 
+-- Set clipboard provider based on environment
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+	if vim.env.DISPLAY == nil then
+		vim.g.clipboard = "osc52"
+	end
+end)
+
 -- highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",

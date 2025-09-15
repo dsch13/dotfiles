@@ -170,7 +170,6 @@ alias topcpu='/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
 alias topmem='/bin/ps -eo pmem,pid,user,args | sort -k 1 -r | head -10'
 
 # Development
-alias tmuxs='tmux new-session -s ${PWD##*/}'
 alias rmq='docker run -d --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management'
 alias boundvpn='openvpn3 session-start --config bnd-dev'
 alias pullmaster='pull_all_master.sh'
@@ -246,6 +245,17 @@ avd-coldboot() {
       echo "Unknown option: '$REPLY'"
     fi
   done
+}
+
+tmuxs() {
+  local name="${PWD##*/}"
+
+  if [ -n "$TMUX" ]; then
+    tmux new-session -d -A -s "$name"
+    tmux switch-client -t "$name"
+  else
+    tmux new-session -A -s "$name"
+  fi
 }
 
 source ~/.bash_completion/alacritty
