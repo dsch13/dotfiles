@@ -8,7 +8,7 @@ return {
 		suggestion = {
 			auto_trigger = true,
 		},
-		copilot_model = "claude-3.7-sonnet",
+		copilot_model = "gemini-2.5-pro",
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {

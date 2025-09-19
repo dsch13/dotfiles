@@ -17,16 +17,6 @@ return {
 			},
 			ft = { "markdown", "Avante" },
 		},
-		{
-			"ravitemer/mcphub.nvim",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-			},
-			build = "npm install -g mcp-hub@latest",
-			config = function()
-				require("mcphub").setup()
-			end,
-		},
 	},
 	opts = {
 		provider = "copilot",
@@ -49,14 +39,5 @@ return {
 		web_search_engine = {
 			provider = "google",
 		},
-		-- system_prompt = function()
-		-- 	local hub = require("mcphub").get_hub_instance()
-		-- 	return hub and hub:get_active_servers_prompt() or ""
-		-- end,
-		-- custom_tools = function()
-		-- 	return {
-		-- 		require("mcphub.extensions.avante").mcp_tool(),
-		-- 	}
-		-- end,
 	},
 }
